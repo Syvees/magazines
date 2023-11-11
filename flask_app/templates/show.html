@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+    <title>Car Dealz</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+            </div>
+            <div class="col">
+                <a href="/user/{{id}}" style="margin-right: 40px;">My Purchases</a> 
+                <a href="/dashboard" style="margin-right: 40px;">Dashboard</a> 
+                <a href="/logout">Logout</a> 
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <h3>${{one_car.price}}</h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Model: {{one_car.model}}</td>
+                    </tr> 
+                    <tr>
+                        <td>Make: {{one_car.make}}</td>
+                    </tr> 
+                    <tr>
+                        <td>Year: {{one_car.year}}</td>
+                    </tr> 
+                    <tr>
+                        <td>Description:</td>
+                    </tr> 
+                    <tr>
+                        <td>{{one_car.description}}</td>
+                    </tr> 
+                    <tr>
+                        <td>Seller: {{one_car.buyer.first_name}} {{one_car.buyer.last_name}}</td>
+                    </tr> 
+                </tbody>
+            </table>  
+        </div>
+        <div class="row" style="margin-top: 10px;">
+            <a href="/purchase/{{one_car.id}}" style="margin-right: 40px;">Purchase</a>
+        </div>  
+    </div>
+</body>
+</html>

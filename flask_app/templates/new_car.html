@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+    <title>Car Dealz</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+            </div>
+            <div class="col">
+                <a href="/user/{{one_user.id}}" style="margin-right: 40px;">My Purchases</a> 
+                <a href="/dashboard" style="margin-right: 40px;">Dashboard</a> 
+                <a href="/logout">Logout</a> 
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col">
+                <h3>Cars for Sale</h3>
+                {% with messages = get_flashed_messages(category_filter=["add_car"]) %} <!-- declare a variable called messages -->
+                {% if messages %} <!-- check if there are any messages -->
+                    {% for message in messages %} <!-- loop through the messages -->
+                        <p class="error">{{message}}</p><!-- display each message in a paragraph tag -->
+                    {% endfor %}
+                {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+        <div class="row">
+            <form action="/add/car" method="POST">
+                <div class="col">
+                    <div class="d-flex flex-column">
+                        <label for="price">Price:</label>
+                        <input type="number" name="price">
+                        <label for="model">Model:</label>
+                        <input type="text" name="model">
+                        <label for="make">Make:</label>
+                        <input type="text" name="make">
+                        <label for="year">Year:</label>
+                        <input type="number" name="year">
+                        <label for="description">Description:</label>
+                        <textarea name="description" cols="40" rows="2"></textarea>
+                        <br>
+                </div>
+                <button type="submit" class="btn btn-success">Add</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

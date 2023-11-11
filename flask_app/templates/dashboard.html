@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+    <title>Car Dealz</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3>Welcome to Car Dealz, {{one_user.first_name}}!</h3>
+            </div>
+            <div class="col">
+                <a href="/logout">Logout</a> 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h3>Cars for Sale</h3>
+            </div>
+            <div class="col" style="margin-top: 10px;">
+                <a href="/user/{{one_user.id}}" style="margin-right: 40px;">My Purchases</a> 
+            </div>
+        </div>
+        <br><br>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Model</th>
+                    <th>Year</th>
+                    <th>Seller</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for one_car in all_cars %}
+                <tr>
+                    <td>{{one_car.model}}</td>
+                    <td>{{one_car.year}}</td>
+                    <td>{{one_car.buyer.first_name}} {{one_car.buyer.last_name}}</td>
+                    <td> {% if one_car.sold != 0 %}
+                        <p>SOLD</p>
+                        {% else %}
+                        <a href="/show/{{one_car.id}}">view</a> {% if session["logged_in_id"] == one_car.buyer.id %}|<a href="/edit/{{one_car.id}}">edit</a> |<a href="/delete/{{one_car.id}}">delete</a></td>
+                    {% endif %}   
+                    {% endif %}   
+
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table> 
+        <div>
+            <a href="/new">Add A Car</a> 
+        </div>  
+    </div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4 { 
+    color: #a06fc5;
+}
+
+.register {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    color: #28A745;
+}
+
+.login {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    color: #007BFF;
+}
+
+a {  /* ALL LINKS */
+    text-decoration: underline;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.error {
+    color:red;
+}
